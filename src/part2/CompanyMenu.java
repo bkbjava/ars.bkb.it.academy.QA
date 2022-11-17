@@ -3,17 +3,9 @@ package part2;
 import java.util.Scanner;
 
 public class CompanyMenu {
-    public static void main(String[] args) {
-
+    public static void start(Company companyStart) {
+        Employee employeeStart = new Employee();
         Company company = new Company();
-
-        Company company1 = new Company("Apple", 1000000, "Тим Кук", 50);
-        Company company2 = new Company("Tesla", 5000000, "Илон Маск", 70);
-        Company company3 = new Company("Microsoft", 2800000, "Сатья Наделла", 45);
-
-        Employee employee1 = new Employee("James", 800, "Junior");
-        Employee employee2 = new Employee("Max", 1700, "Middle");
-        Employee employee3 = new Employee("David", 3100, "Senior");
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("\nМеню для работы с компанией: " +
@@ -24,7 +16,7 @@ public class CompanyMenu {
             "\n5) Удаление сотрудника из компании" +
             "\n6) Поменять руководителя компании" +
             "\n7) Меню для работы с сотрудниками" +
-            "\n0) Выход из главного меню");
+            "\n0) Вернуться в меню для работы с холдингом");
 
             System.out.print("\nВведите номер меню: ");
             int command = scanner.nextInt();
@@ -44,10 +36,12 @@ public class CompanyMenu {
                 case 4:
                     System.out.print("Введите имя сотрудника: ");
                     String nameEmployee = scanner.next();
+                    boolean res = false;
                     for(Employee emp : Employee.getListEmployee()) {
                         if(emp.getName().equals(nameEmployee))
-                            System.out.println(company.addEmployee(emp));
+                            res = company.addEmployee(emp);
                     }
+                    System.out.println(res);
                     break;
                 case 5:
                     System.out.print("Введите имя сотрудника: ");
@@ -65,12 +59,13 @@ public class CompanyMenu {
                     System.out.println(company.changeSupervisor(nameCompany2, nameEmployee3));
                     break;
                 case 7:
-                    System.out.print("Введите имя сотрудника: ");
-                    String nameEmployee4 = scanner.next();
-                    System.out.println(company.getEmployeeByName(nameEmployee4));
+                    EmployeeMenu.start(employeeStart);
+//                    System.out.print("Введите имя сотрудника: ");
+//                    String nameEmployee4 = scanner.next();
+//                    System.out.println(company.getEmployeeByName(nameEmployee4));
                     break;
                 case 0:
-                    System.out.println("Вы вышли с главного меню!");
+                    System.out.println("Вы вернулись в меню для работы с холдингом!");
                     return;
                 default:
                     System.out.println("Ошибка! Введите пункт из меню");

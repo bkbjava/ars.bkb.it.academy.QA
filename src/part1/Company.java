@@ -6,10 +6,7 @@ import java.util.Arrays;
 public class Company extends Holding{
     private String name;
     private Employee[] employees = new Employee[25];
-    //Нужно добавить:
-    //Бюджет холдинга
     private double budget;
-    //Руководителя компании
     private String supervisor;
     private int numberOfWorkplaces;
     private static double allBudget = 0;
@@ -39,7 +36,7 @@ public class Company extends Holding{
         listCompany.add(this);
     }
 
-    //Реализуйте вывод информации об этой компании (кроме списка сотрудников)
+    // Вывод информации об этой компании (кроме списка сотрудников)
     public void companyInfo(String name) {
         int count = 0;
         for(Company comp : listCompany) {
@@ -55,7 +52,7 @@ public class Company extends Holding{
             System.out.println("Ошибка, нет такой компании!");
     }
 
-    //Реализуйте вывод списка сотрудников этой компании
+    // Вывод списка сотрудников этой компании
     public void employeeList() {
         for(Employee employee : employees) {
             if(employee != null)
@@ -63,13 +60,13 @@ public class Company extends Holding{
         }
     }
 
-    // Реализуйте подсчет всех заработных плат сотрудников
+    // Подсчет всех заработных плат сотрудников
     public void allSalary() {
         double salary = 0;
         for(Employee emp : employee.getListEmployee()) {
             salary += emp.getSalary();
         }
-        System.out.println("Общая заработная плата сотрудников: " + salary);
+        System.out.println("Общие расходы на зарплаты сотрудников: " + salary);
     }
 
     // Добавление сотрудника в компанию
@@ -105,7 +102,7 @@ public class Company extends Holding{
         return false;
     }
 
-    //Реализуйте поиск сотрудника по имени
+    // Поиск сотрудника по имени
     public Employee getEmployeeByName(String name) {
         for (Employee emp : employee.getListEmployee()) {
             if (emp.getName().equals(name))

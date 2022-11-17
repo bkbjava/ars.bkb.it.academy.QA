@@ -3,15 +3,11 @@ package part2;
 import java.util.Scanner;
 
 public class MainMenu {
-    public static void main(String[] args) {
-
+    public static void start(Holding holdingStart) {
+        Company companyStart = new Company();
         Holding holding = new Holding();
-        Company company1 = new Company("Apple", 1000000, "Тим Кук", 50);
-        Company company2 = new Company("Tesla", 5000000, "Илон Маск", 70);
-        Company company3 = new Company("Microsoft", 2800000, "Сатья Наделла", 45);
-
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("\nГлавное меню для работы с холдингом: " +
                     "\n1) Вывод списка компаний в холдинге" +
                     "\n2) Вывод общего бюджета холдинга" +
@@ -19,7 +15,7 @@ public class MainMenu {
                     "\n4) Добавление компании в холдинг" +
                     "\n5) Удаление компании из холдинга" +
                     "\n6) Меню для работы с компанией" +
-                    "\n0) Выход из главного меню");
+                    "\n0) Выход и закрытие главного меню");
 
         System.out.print("\nВведите номер меню: ");
         int command = scanner.nextInt();
@@ -63,12 +59,13 @@ public class MainMenu {
                     System.out.println(false);
                 break;
             case 6:
-                System.out.print("Введите название компании: ");
-                String nameCompany3 = scanner.next();
-                System.out.println(holding.getCompanyByName(nameCompany3));
+                CompanyMenu.start(companyStart);
+//                System.out.print("Введите название компании: ");
+//                String nameCompany3 = scanner.next();
+//                System.out.println(holding.getCompanyByName(nameCompany3));
                 break;
             case 0:
-                System.out.println("Вы вышли с главного меню!");
+                System.out.println("Вы вышли и закрыли главное меню!");
                 return;
             default:
                 System.out.println("Ошибка! Введите пункт из меню");

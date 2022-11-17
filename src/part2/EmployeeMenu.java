@@ -3,17 +3,13 @@ package part2;
 import java.util.Scanner;
 
 public class EmployeeMenu {
-    public static void main(String[] args) {
-        Employee employee = new Employee();
-
-        Employee employee1 = new Employee("James", 800, "Junior");
-        Employee employee2 = new Employee("Max", 1700, "Middle");
-        Employee employee3 = new Employee("David", 3100, "Senior");
-
+    public static void start(Employee employeeStart) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("\n1) Вывод информации о сотруднике" +
-                               "\n0) Выход из главного меню");
+            Employee employee = new Employee();
+            System.out.println("\nМеню для работы с сотрудниками: " +
+                    "\n1) Вывод информации о сотруднике" +
+                               "\n0) Вернуться в меню для работы с компанией");
 
             System.out.print("\nВведите номер меню: ");
 
@@ -24,8 +20,8 @@ public class EmployeeMenu {
                 String nameEmployee = scanner.next();
                 employee.employeeInfo(nameEmployee);
             } else if (command == 0) {
-                System.out.println("Вы вышли с главного меню!");
-                break;
+                System.out.println("Вы вернулись в меню для работы с компанией!");
+                return;
             }
             else {
                 System.out.println("Ошибка! Введите пункт из меню");

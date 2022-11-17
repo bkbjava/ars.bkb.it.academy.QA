@@ -10,7 +10,7 @@ public class Holding {
         companies = new Company[10];
     }
 
-
+    // Добавление компании в холдинг
     public boolean addCompany(Company company) {
         for (int i = 0; i < companies.length; i++) {
             if (companies[i] == null) {
@@ -58,7 +58,7 @@ public class Holding {
         return false;
     }
 
-    //Реализуйте поиск компании по наименованию
+    // Поиск компании по наименованию
     public Company getCompanyByName(String name) {
         for (Company company : companies) {
             if (company != null && company.getName().equals(name))
