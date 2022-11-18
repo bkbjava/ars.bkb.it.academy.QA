@@ -54,10 +54,15 @@ public class Company extends Holding{
 
     // Вывод списка сотрудников этой компании
     public void employeeList() {
+        boolean res = false;
         for(Employee employee : employees) {
-            if(employee != null)
+            if(employee != null) {
                 System.out.println(employee.getName() + " | " + employee.getSalary() + " | " + employee.getPosition());
+                res = true;
+            }
         }
+        if(!res)
+            System.out.println("В компании еще нет сотрудников, пожалуйства добавьте их!");
     }
 
     // Подсчет всех заработных плат сотрудников

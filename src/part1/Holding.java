@@ -23,11 +23,15 @@ public class Holding {
 
     // Вывод списка компаний в холдинге
     public void showCompanies() {
+        boolean res = false;
         for (Company company : companies) {
             if (company != null) {
                 System.out.println(company.getName() + " | " + company.getSupervisor() + " | " + company.getBudget());
+                res = true;
             }
         }
+        if(!res)
+            System.out.println("В холдинге еще нет компаний, пожалуйства добавьте их!");
     }
 
     // Вывод общего бюджета холдинга
