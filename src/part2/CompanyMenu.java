@@ -3,9 +3,8 @@ package part2;
 import java.util.Scanner;
 
 public class CompanyMenu {
-    public static void start(Company companyStart) {
-        Employee employeeStart = new Employee();
-        Company company = new Company();
+    public static void start() {
+        Company company = null;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("\nМеню для работы с компанией: " +
@@ -15,7 +14,9 @@ public class CompanyMenu {
             "\n4) Добавление сотрудника в компанию" +
             "\n5) Удаление сотрудника из компании" +
             "\n6) Поменять руководителя компании" +
-            "\n7) Меню для работы с сотрудниками" +
+            "\n7) Доходы компании" +
+            "\n8) Расходы компании" +
+            "\n9) Меню для работы с сотрудниками" +
             "\n0) Вернуться в меню для работы с холдингом");
 
             System.out.print("\nВведите номер меню: ");
@@ -25,13 +26,13 @@ public class CompanyMenu {
                 case 1:
                     System.out.print("Введите название компании: ");
                     String nameCompany = scanner.next();
-                    company.companyInfo(nameCompany);
+                    Company.companyInfo(nameCompany);
                     break;
                 case 2:
-                    company.employeeList();
+                    Company.employeeList();
                     break;
                 case 3:
-                    company.allSalary();
+                    Company.allSalary();
                     break;
                 case 4:
                     System.out.print("Введите имя сотрудника: ");
@@ -39,16 +40,16 @@ public class CompanyMenu {
                     boolean res = false;
                     for(Employee emp : Employee.getListEmployee()) {
                         if(emp.getName().equals(nameEmployee))
-                            res = company.addEmployee(emp);
+                            res = Company.addEmployee(emp);
                     }
                     System.out.println(res);
                     break;
                 case 5:
                     System.out.print("Введите имя сотрудника: ");
                     String nameEmployee2 = scanner.next();
-                    for(Employee emp : company.getEmployees()) {
+                    for(Employee emp : Company.getEmployees()) {
                         if(emp != null && emp.getName().equals(nameEmployee2))
-                            System.out.println(company.deleteEmployee(emp));
+                            System.out.println(Company.deleteEmployee(emp));
                     }
                     break;
                 case 6:
@@ -56,13 +57,16 @@ public class CompanyMenu {
                     String nameCompany2 = scanner.next();
                     System.out.print("Введите имя нового руководителя: ");
                     String nameEmployee3 = scanner.next();
-                    System.out.println(company.changeSupervisor(nameCompany2, nameEmployee3));
+                    System.out.println(Company.changeSupervisor(nameCompany2, nameEmployee3));
                     break;
                 case 7:
-                    EmployeeMenu.start(employeeStart);
-//                    System.out.print("Введите имя сотрудника: ");
-//                    String nameEmployee4 = scanner.next();
-//                    System.out.println(company.getEmployeeByName(nameEmployee4));
+                    Company.incomeCompany();
+                    break;
+                case 8:
+                    Company.consumptionCompany();
+                    break;
+                case 9:
+                    EmployeeMenu.start();
                     break;
                 case 0:
                     System.out.println("Вы вернулись в меню для работы с холдингом!");

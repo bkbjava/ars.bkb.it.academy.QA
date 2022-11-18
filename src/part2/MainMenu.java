@@ -3,10 +3,11 @@ package part2;
 import java.util.Scanner;
 
 public class MainMenu {
-    public static void start(Holding holdingStart) {
-        Company companyStart = new Company();
+    public static void start() {
+
         Holding holding = new Holding();
         Scanner scanner = new Scanner(System.in);
+
         while (true) {
             System.out.println("\nГлавное меню для работы с холдингом: " +
                     "\n1) Вывод списка компаний в холдинге" +
@@ -59,7 +60,7 @@ public class MainMenu {
                     System.out.println(false);
                 break;
             case 6:
-                CompanyMenu.start(companyStart);
+                CompanyMenu.start();
 //                System.out.print("Введите название компании: ");
 //                String nameCompany3 = scanner.next();
 //                System.out.println(holding.getCompanyByName(nameCompany3));

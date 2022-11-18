@@ -3,10 +3,10 @@ package part2;
 import java.util.Scanner;
 
 public class EmployeeMenu {
-    public static void start(Employee employeeStart) {
+    public static void start() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Employee employee = new Employee();
+            Employee employee;
             System.out.println("\nМеню для работы с сотрудниками: " +
                     "\n1) Вывод информации о сотруднике" +
                                "\n0) Вернуться в меню для работы с компанией");
@@ -16,9 +16,7 @@ public class EmployeeMenu {
             int command = scanner.nextInt();
 
             if (command == 1) {
-                System.out.print("Введите имя сотрудника: ");
-                String nameEmployee = scanner.next();
-                employee.employeeInfo(nameEmployee);
+                Employee.employeeInfo();
             } else if (command == 0) {
                 System.out.println("Вы вернулись в меню для работы с компанией!");
                 return;

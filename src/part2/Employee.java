@@ -1,33 +1,53 @@
 package part2;
 
 import java.util.ArrayList;
-public class Employee extends Company {
+import java.util.Arrays;
+
+public abstract class Employee extends Company {
     private String name;
     private double salary;
     private String position;
+
+    private String type;
+    private String[] list;
     private static int amountEmployee;
+    private CompanyType companyType;
 
     private static ArrayList<Employee> listEmployee = new ArrayList<>();
 
 
     public Employee() {}
-    public Employee(String name, double salary, String position) {
+    public Employee(String name, double salary, String position, CompanyType companyType) {
         this.name = name;
         this.salary = salary;
         this.position = position;
-        listEmployee.add(this);
         amountEmployee++;
+        this.companyType = companyType;
+        listEmployee.add(this);
     }
 
     // Вывод информации о сотруднике
-    public void employeeInfo(String nameEmployee) {
+    public static void employeeInfo() {
         int count = 0;
-        for(Employee emp : listEmployee) {
-            if (emp.name.equals(nameEmployee)) {
-                System.out.println(emp.name + " | " + emp.salary + " | " + emp.position);
+
+        System.out.println("Имена всех сотрудников:");
+        for (Employee employee : Employee.getListEmployee()) {
+            System.out.println(employee.getName());
+        }
+        System.out.print("\nВведите имя сотрудника для получения подробной информации!" +
+                "\nИмя: ");
+        String name = scanner.nextLine();
+        for (Employee employee : listEmployee) {
+            if(employee.getName().equals(name)){
+                System.out.println("\nИмя сотрудника: " + employee.getName() +
+                        "\nЗарплата сотрудника: " + employee.getSalary() +
+                        "\nПозиция сотрудника: " + employee.getPosition() +
+                        "\nРаботает в: " + employee.getCompanyType() + "\n" +
+                         employee.getType() + " " + Arrays.toString(employee.getList()));
                 count++;
             }
         }
+
         if(count == 0)
             System.out.println("Нет такого сотрудника!");
     }
@@ -69,12 +89,23 @@ public class Employee extends Company {
     }
 
     @Override
+    public CompanyType getCompanyType() {
+        return companyType;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String[] getList() {
+        return list;
+    }
+
+    @Override
     public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", salary=" + salary +
-                ", position='" + position + '\'' +
-                '}';
+        return " name = '" + name + '\'' +
+                ", salary = " + salary +
+                ", position = '" + position + '\'';
     }
 
 }

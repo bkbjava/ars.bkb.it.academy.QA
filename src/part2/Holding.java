@@ -1,10 +1,18 @@
 package part2;
 
+import part2.animation.studio.AnimationStudio;
+import part2.it.company.ItCompany;
+
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Holding {
     private Company[] companies;
     Company company;
+    ItCompany itCompany;
+    AnimationStudio animationStudio;
+
+    Scanner scanner = new Scanner(System.in);
 
     public Holding() {
         companies = new Company[10];
@@ -23,12 +31,49 @@ public class Holding {
 
     // Вывод списка компаний в холдинге
     public void showCompanies() {
+        System.out.println("\nМеню для выбора типа компании:" +
+                "\n1) Вывод Айти Компаний" +
+                "\n2) Вывод Анимационных студий");
+        System.out.print("\nНомер меню: ");
+        int numberMenu = scanner.nextInt();
+
+        CompanyType companyType = null;
+
+        if(numberMenu == 1) {
+            companyType = CompanyType.IT_COMPANY;
+        }
+        else if(numberMenu == 2) {
+            companyType = CompanyType.ANIMATION_STUDIO;
+        }
+        else {
+            System.out.println("Введите пункт с меню!");
+        }
+
+        boolean res = false;
         for (Company company : companies) {
-            if (company != null) {
-                System.out.println(company.getName() + " | " + company.getSupervisor() + " | " + company.getBudget());
+            if (companyType == null) {
+                break;
+            }
+            if (company != null && company.getCompanyType().equals(companyType)) {
+                System.out.println("\nНазвание компании: " + company.getName() +
+                        "\nРуководитель: " + company.getSupervisor() +
+                        "\nБюджет: " + company.getBudget() +
+                        "\nКол-во рабочих мест: " + company.getNumberOfWorkplaces());
+                res = true;
+            }
+        }
+        System.out.println("Список сотрудников: ");
+        for(Employee employee : Employee.getListEmployee()) {
+            if(!res) {
+                System.out.println("В холдинге еще нет компаний, пожалуйства добавьте их!");
+                break;
+            }
+            else if(employee.getCompanyType().equals(companyType)) {
+                System.out.println(employee.getClass().getSimpleName() + ':' + employee.toString());
             }
         }
     }
+
 
     // Вывод общего бюджета холдинга
     public void allBudget() {
@@ -46,6 +91,16 @@ public class Holding {
         }
         System.out.println("Кол-во рабочих мест: " + amountAllEmployee + " | Кол-во работающих сотрудников: " + Employee.getAmountEmployee());
     }
+
+//    public void fullShowCompanies() {
+//        for(Company com : companies) {
+//            if(com != null) {
+//                System.out.println(company.getName() + " | ");
+//
+//            }
+//
+//        }
+//    }
 
     // Удаление компании из холдинга
     public boolean deleteCompany(Company company) {
